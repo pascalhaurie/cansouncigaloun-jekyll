@@ -1,22 +1,51 @@
+:root {
+    --main: #69777f;
+}
+
 /**
- * Reset some basic elements
+ * Reset all elements
  */
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
     margin: 0;
     padding: 0;
+    line-height: calc(var(--line-height) * 1rem);
 }
+
+:root {
+    --fs-base: 100%;
+    --line-height: calc(1rem * 1.5);
+    --fs-h1: 3.157rem;
+    --fs-h2: 2.369rem;
+    --fs-h3: 1.777rem;
+    --fs-h4: 1.333rem;
+    --fs-p: 1rem;
+    --fs-sm: 0.75rem;
+}
+
+@media only screen and (min-width: 40em) {
+    :root {
+        --fs-base: 112.5%;
+        --line-height: calc(1rem * 1.7);
+        --fs-p: 1.125rem;
+        --fs-sm: 0.667rem;
+    }
+}
+
+
 
 
 
 /**
  * Basic styling
  */
-body {
+html {
+    box-sizing: border-box;
     font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
+    font-size: var(--fs-base);
+    /*   line-height: $base-line-height; */
     font-weight: 300;
     color: $text-color;
     background-color: $background-color;
@@ -28,14 +57,29 @@ body {
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
 %vertical-rhythm {
     margin-bottom: $spacing-unit / 2;
 }
 
-
+/**
+ * Paragraphs
+ */
+p:last-child {
+    margin-bottom: 0;
+}
 
 /**
  * Images
@@ -50,7 +94,7 @@ img {
 /**
  * Figures
  */
-figure > img {
+figure>img {
     display: block;
 }
 
@@ -63,14 +107,16 @@ figcaption {
 /**
  * Lists
  */
-ul, ol {
+ul,
+ol {
     margin-left: $spacing-unit;
 }
 
 li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
+
+    >ul,
+    >ol {
+        margin-bottom: 0;
     }
 }
 
@@ -79,7 +125,12 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 300;
 }
 
@@ -141,7 +192,7 @@ pre {
     padding: 8px 12px;
     overflow-x: scroll;
 
-    > code {
+    >code {
         border: 0;
         padding-right: 0;
         padding-left: 0;
@@ -155,7 +206,7 @@ pre {
  */
 .wrapper {
     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
     margin-right: auto;
     margin-left: auto;
     padding-right: $spacing-unit;
@@ -164,7 +215,7 @@ pre {
 
     @include media-query($on-laptop) {
         max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+        max-width: calc(#{$content-width} - (#{$spacing-unit}));
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }
@@ -191,7 +242,7 @@ pre {
  */
 .icon {
 
-    > svg {
+    >svg {
         display: inline-block;
         width: 16px;
         height: 16px;
